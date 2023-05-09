@@ -1,0 +1,30 @@
+create DATABASE IF NOT EXISTS listadetareas; 
+use listadetareas;
+
+CREATE TABLE user (
+  id INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(255) NOT NULL,
+  email VARCHAR(255) NOT NULL,
+  contraseña VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE list (
+  id INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(50) NOT NULL,
+  descripcion VARCHAR(255),
+  usuario_id INT NOT NULL,
+  fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  FOREIGN KEY (usuario_id) REFERENCES user(id) ON DELETE CASCADE
+);
+
+CREATE TABLE task (
+  id INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(50) NOT NULL,
+  descripcion VARCHAR(255),
+  completada BOOLEAN DEFAULT 0,
+  lista_id INT(11) NOT NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (lista_id) REFERENCES list(id) ON DELETE CASCADE
+);
