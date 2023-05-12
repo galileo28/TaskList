@@ -9,10 +9,17 @@ module.exports = {
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
-      }
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))'
+      },
+      ripple: (theme) => ({
+        colors: theme('colors'),
+        darken: 0.2,
+        modifierTransition: 'background 0.9s',
+        activeTransition: 'background 0s'
+      })
     }
   },
-  plugins: []
+  plugins: [
+    require('tailwindcss-ripple')()
+  ]
 }

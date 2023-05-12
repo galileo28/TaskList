@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { loginFields } from '@/constants/formFields'
 import FormExtra from './FormExtra'
 import Input from './Input'
-
+import FormAction from './FormAction'
 const fields = loginFields
 const fieldsState = {}
 fields.forEach(field => fieldsState[field.id] = '')
@@ -17,6 +17,13 @@ export default function Login ({
 
   const handleChange = (e) => {
     setLoginState({ ...loginState, [e.target.id]: e.target.value })
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    authenticateUser()
+  }
+  const authenticateUser = () => {
+
   }
   return (
     <div className='flex items-center justify-center h-screen bg-gray-900'>
@@ -44,6 +51,7 @@ export default function Login ({
               )
             }
             <FormExtra />
+            <FormAction handleSubmit={handleSubmit} text='Login' />
           </form>
         </div>
       </div>
