@@ -1,4 +1,7 @@
-export default function FormExtra () {
+export default function FormExtra ({
+  labelText,
+  textLink
+}) {
   return (
     <div className='flex items-center justify-between'>
       <div className='flex items-center'>
@@ -9,13 +12,13 @@ export default function FormExtra () {
           className='h-4 w-4 text-purple-600 focus:ring-purple-500 border-gray-300 rounded'
         />
         <label htmlFor='remember-me' className='ml-2 block text-sm text-white'>
-          Remember me
+          {labelText}
         </label>
       </div>
 
       <div className='text-sm ml-2'>
         <a href='#' className='font-medium text-purple-600 hover:text-purple-500'>
-          Forgot your password?
+          {textLink}
         </a>
       </div>
     </div>
