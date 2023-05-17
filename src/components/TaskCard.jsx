@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
+import MenuIcon from './MenuIcon'
+
 function TaskCard ({ task }) {
-  const { id, nombre, descripcion } = task
+  const { nombre, descripcion, lista_id } = task
   const [completada, setCompletada] = useState(false)
   const handleCheckboxChange = () => {
     setCompletada(!completada)
   }
+
   return (
-    <div className='bg-gray-700 rounded-lg shadow-lg p-8 flex justify-between items-center relative w-auto border-2 border-gray-500'>
+    <div className='bg-gray-700 rounded-lg shadow-lg p-8 py-2 flex justify-between items-center relative w-auto border-2 border-gray-500 mb-4'>
       <div className='flex items-center'>
         <input
           type='checkbox'
@@ -17,11 +20,10 @@ function TaskCard ({ task }) {
         <div>
           <h3 className='text-lg font-semibold truncate'>{nombre}</h3>
           <p className='text-sm text-gray-600 truncate'>{descripcion}</p>
+          <p className='text-xs text-gray-600'>List: {lista_id}</p>
         </div>
       </div>
-      <div className='flex items-center'>
-        <button className='bg-red-600 hover:bg-purple-500 px-5 py-2 text-gray-50 rounded-full'>Delete</button>
-      </div>
+      <MenuIcon />
       <p className='absolute bottom-0 right-2 text-xs text-gray-500'>
         22/01/2023
       </p>
