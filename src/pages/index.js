@@ -1,14 +1,25 @@
-import LoginPage from '@/components/Login'
+import React, { useState, useEffect } from 'react'
+import Container from '@/components/Container'
+import Navbar from '@/components/Navbar'
+import TaskList from '@/components/TaskList'
+import TaskCard from '@/components/TaskCard'
 
 export default function Home () {
-  return (
-    <div className='flex items-center justify-center h-screen bg-gray-900'>
-      <div className='bg-gray-800 shadow-md rounded border border-gray-500'>
-        <div className='flex justify-center px-7 py-6'>
-          <LoginPage />
-        </div>
-      </div>
-    </div>
+  const [tasks, setTasks] = useState([])
 
+  useEffect(() => {
+    fetch('http://localhost:3001/api/v1/tasks')
+      .then(response => response.json())
+      .then(data => setTasks(data.results))
+      .catch(error => console.log(error))
+  }, [])
+
+  return (
+    <>
+      <Navbar />
+      <Container>
+        <TaskList tasks={tasks} />
+      </Container>
+    </>
   )
 }
