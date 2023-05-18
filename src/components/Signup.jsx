@@ -21,8 +21,27 @@ export default function Signup () {
     createAccount()
   }
 
-  const createAccount = () => {}
+  const createAccount = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/v1/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(signupState)
+      })
 
+      if (response.ok) {
+        // El usuario se creó exitosamente
+        console.log('Usuario creado correctamente')
+      } else {
+        // Ocurrió un error al crear el usuario
+        console.log('Error al crear el usuario')
+      }
+    } catch (error) {
+      console.error('Error en la solicitud:', error)
+    }
+  }
   return (
     <form className='space-y-4 md:space-y-6' onSubmit={handleSubmit}>
       <div className='flex items-center'>

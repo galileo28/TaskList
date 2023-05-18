@@ -15,11 +15,30 @@ export default function Login () {
     setLoginState({ ...loginState, [e.target.id]: e.target.value })
   }
   const handleSubmit = (e) => {
+    console.log('hola')
     e.preventDefault()
     authenticateUser()
   }
-  const authenticateUser = () => {
+  const authenticateUser = async () => {
+    try {
+      const response = await fetch('http://localhost:3001/api/v1/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(loginState)
+      })
 
+      if (response.ok) {
+        // El usuario ha iniciado sesión correctamente
+        console.log('Inicio de sesión exitoso')
+      } else {
+        // Error de inicio de sesión
+        console.log('Error al iniciar sesión')
+      }
+    } catch (error) {
+      console.error('Error en la solicitud:', error)
+    }
   }
   return (
 
