@@ -4,8 +4,9 @@ module.exports = {
     port: process.env.DB_PORT,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    name: process.env.DB_NAME
+    name: process.env.DB_NAME,
   },
   host: process.env.HOST,
-  port: process.env.PORT
+  port: process.env.PORT,
+  secret: process.env.SECRET
 }

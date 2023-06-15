@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { loginFields } from '@/constants/formFields'
 import FormExtra from './FormExtra'
 import Input from './Input'
@@ -10,12 +10,22 @@ fields.forEach(field => fieldsState[field.id] = '')
 
 export default function Login () {
   const [loginState, setLoginState] = useState(fieldsState)
+  const [user, setUser] = useState(null);
+
+  // Revisa si existe el token en localStorage
+  useEffect(()=>{
+    const loggedUserJSON = window.localStorage.getItem('loggedUser');
+
+    if(loggedUserJSON){
+      const user = JSON.parse(loggedUserJSON);
+      setUser(user);
+    }
+  }, []);
 
   const handleChange = (e) => {
     setLoginState({ ...loginState, [e.target.id]: e.target.value })
   }
   const handleSubmit = (e) => {
-    console.log('hola')
     e.preventDefault()
     authenticateUser()
   }
@@ -36,6 +46,12 @@ export default function Login () {
         // Error de inicio de sesión
         console.log('Error al iniciar sesión')
       }
+
+      // Guarda el token de sesion en el local storage
+      const data = await response.json();
+
+      window.localStorage.setItem('loggedUser', JSON.stringify(data?.token));
+
     } catch (error) {
       console.error('Error en la solicitud:', error)
     }
