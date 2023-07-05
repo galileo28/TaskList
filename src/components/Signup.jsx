@@ -63,7 +63,7 @@ export default function Signup () {
       ))}
       <FormExtra labelText='I accept the' textLink='Terms and Conditions' />
       <FormAction handleSubmit={handleSubmit} text='Signup' />
-      <AccountManagementLink text='Already have an account?' textLink='Login here' href='/' />
+      <AccountManagementLink text='Already have an account?' textLink='Login here' href='/login' />
     </form>
   )
 }

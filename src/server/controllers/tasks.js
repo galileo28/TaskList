@@ -11,9 +11,9 @@ const getTasks = async (req, res) => {
 
 const createTask = async (req, res) => {
   try {
-    const { name, description, completed, listId } = req.body
-    const [result] = await pool.query('INSERT INTO task (nombre, descripcion, completada, lista_id) VALUES (?, ?, ?, ?)', [name, description, completed, listId])
-    res.json({ id: result.insertId, name, description, completed, listId })
+    const { name, description, listId } = req.body
+    const [result] = await pool.query('INSERT INTO task (nombre, descripcion, lista_id) VALUES (?, ?, ?)', [name, description, listId])
+    res.json({ id: result.insertId, name, description, listId })
   } catch (error) {
     res.status(500).json({ error: error.message })
   }

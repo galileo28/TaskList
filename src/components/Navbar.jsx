@@ -1,5 +1,5 @@
 import Link from 'next/link'
-export default function Navbar () {
+export default function Navbar ({ handleAddTask }) {
   return (
     <>
       <header className='flex justify-between items-center bg-gray-800 px-28 py-3'>
@@ -8,7 +8,7 @@ export default function Navbar () {
         </Link>
 
         <div>
-          <button className='bg-purple-600 hover:bg-purple-500 px-5 py-2 text-gray-50 rounded'>Add Task</button>
+          <button onClick={handleAddTask} className='bg-purple-600 hover:bg-purple-500 px-5 py-2 text-gray-50 rounded'>Add Task</button>
         </div>
       </header>
 

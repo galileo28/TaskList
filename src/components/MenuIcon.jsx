@@ -12,7 +12,7 @@ export default function MenuIcon () {
       <button
         id='dropdownMenuIconHorizontalButton'
         data-dropdown-toggle='dropdownDotsHorizontal'
-        className='inline-flex items-center p-2 text-sm font-medium text-center text-white bg-gray-700 rounded-lg hover:bg-gray-500'
+        className='inline-flex items-center p-2 text-sm font-medium text-center text-gray-300 bg-white rounded-lg hover:bg-gray-200'
         type='button'
         onClick={toggleMenu}
       >
@@ -29,9 +29,9 @@ export default function MenuIcon () {
       {isOpen && (
         <div
           id='dropdownDotsHorizontal'
-          className='z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600'
+          className='z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-28 '
         >
-          <ul className='py-2 text-sm text-gray-700 dark:text-gray-200' aria-labelledby='dropdownMenuIconHorizontalButton'>
+          <ul className='py-2 text-sm dark:text-gray-400' aria-labelledby='dropdownMenuIconHorizontalButton'>
             <li>
               <a href='#' className='block px-4 py-2 hover:bg-red-500 '>
                 Eliminar

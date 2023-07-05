@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { loginFields } from '@/constants/formFields'
 import FormExtra from './FormExtra'
 import Input from './Input'
@@ -10,33 +10,24 @@ fields.forEach(field => fieldsState[field.id] = '')
 
 export default function Login () {
   const [loginState, setLoginState] = useState(fieldsState)
-  const [user, setUser] = useState(null);
-
-  // Revisa si existe el token en localStorage
-  useEffect(()=>{
-    const loggedUserJSON = window.localStorage.getItem('loggedUser');
-
-    if(loggedUserJSON){
-      const user = JSON.parse(loggedUserJSON);
-      setUser(user);
-    }
-  }, []);
 
   const handleChange = (e) => {
     setLoginState({ ...loginState, [e.target.id]: e.target.value })
   }
   const handleSubmit = (e) => {
+    console.log('hola')
     e.preventDefault()
     authenticateUser()
   }
   const authenticateUser = async () => {
+    console.log(loginState.password)
     try {
       const response = await fetch('http://localhost:3001/api/v1/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(loginState)
+        body: JSON.stringify({ email: loginState.email_address, password: loginState.password })
       })
 
       if (response.ok) {
@@ -46,19 +37,13 @@ export default function Login () {
         // Error de inicio de sesión
         console.log('Error al iniciar sesión')
       }
-
-      // Guarda el token de sesion en el local storage
-      const data = await response.json();
-
-      window.localStorage.setItem('loggedUser', JSON.stringify(data?.token));
-
     } catch (error) {
       console.error('Error en la solicitud:', error)
     }
   }
   return (
 
-    <form className='space-y-4 md:space-y-6' action='#'>
+    <form className='space-y-4 md:space-y-6' action='#' onSubmit={handleSubmit}>
       <div className='flex items-center'>
         <p className='mb-0 mr-4 text-lg text-white font-bold'>Login to your account</p>
       </div>

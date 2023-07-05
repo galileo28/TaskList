@@ -9,17 +9,19 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@dnd-kit/core": "^6.0.8",
+    "@dnd-kit/sortable": "^7.0.2",
+    "@dnd-kit/utilities": "^3.2.1",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
-    "bcrypt": "^5.1.0",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
-    "eslint": "8.38.0",
-    "eslint-config-next": "13.3.0",
+    "eslint-config-next": "^12.0.4",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.0",
     "mysql2": "^3.2.3",
-    "next": "13.3.0",
+    "next": "^13.3.0",
     "postcss": "8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
@@ -27,7 +29,10 @@
     "tailwindcss-ripple": "^0.7.1"
   },
   "devDependencies": {
+    "eslint": "^8.43.0",
+    "eslint-plugin-react": "^7.25.3",
     "react-router-dom": "^6.11.1",
-    "standard": "^17.0.0"
+    "standard": "^17.0.0",
+    "tailwind-scrollbar": "^3.0.4"
   }
 }
